@@ -1,0 +1,20 @@
+一 setup
+
+setup.py sdist  构建
+setup.py install 安装
+setup.py upload  上传
+
+
+二 OS
+os.getcwd()   获得当前工作目录
+os.chdir()    切换工作目录
+
+
+三 文本
+open（）
+readlines()
+seek()
+close()
+split(参数) :将字符串在参数处分开。返回一个字符串列表。这会赋至一个目标标识符列表，称为多重赋值。
+find()      :尝试找出一个字符串的子串，无法找到，返回-1，可以找到，返回该子串在原字符串中的索引位置
+strip()     :去空格
