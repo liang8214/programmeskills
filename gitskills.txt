@@ -80,12 +80,57 @@ git log --graph命令可以看到分支合并图。
 
 分支策略
 
-在实际开发中，我们应该按照几个基本原则进行分支管理：
+在实际开发中
 
 首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
 
 那在哪干活呢？干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；
+----------bug分支------
+git stash  可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：
+一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
+另一种方式是用git stash pop，恢复的同时把stash内容也删了：
 
-你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
+先用git stash list查看，然后恢复指定的stash，用命令：
 
-所以，团队合作的分支看起来就像这样：
+$ git stash apply stash@{0}
+
+-----------------Feature（新功能）分支-------------
+git branch -D <branchname>   强制删除已commit 但未合并的分支
+
+----------------多人合作---------
+当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。
+查看  git remote -v显示更详细的信息
+
+ git push origin master ：推送分支  基本上只推送 master 和dev分支就行了。
+
+抓取分支：小伙伴从远程库clone时，默认情况下，你的小伙伴只能看到本地的master分支
+
+$ git checkout -b dev origin/dev  创建远程origin的dev分支到本地
+
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name。
+
+----------标签管理------------------
+tag：版本库快照  打在最新提交的commit上的
+git tag <name> commit_id    还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：
+git tag -a v0.1 -m "version 0.1 released" 3628164
+用命令git show <tagname>可以看到说明文字：
+
+标签打错了，也可以删除：
+$ git tag -d v0.1
+
+如果要推送某个标签到远程，使用命令git push origin <tagname>：
+一次性推送全部尚未推送到远程的本地标签：$ git push origin --tags
+
+先从本地删除： git tag -d v0.9
+然后从远程删除。删除命令也是push，但是格式如下：
+$ git push origin :refs/tags/v0.9
+
+---------忽略特殊文件------
+在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。
+
+最后一步就是把.gitignore也提交到Git，就完成了
+
+如果你确实想添加该文件，可以用-f强制添加到Git：
+$ git add -f App.class
+
+需要找出来到底哪个规则写错了，可以用git check-ignore命令检查：git check-ignore -v App.class
