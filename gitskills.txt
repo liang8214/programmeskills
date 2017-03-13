@@ -1,3 +1,4 @@
+----------------lunix操作-----------------------
 mkdir <filename>  创建文件夹
 cd     进入文件夹
 pwd    查看当前目录
@@ -9,7 +10,7 @@ $ git config --global user.email "email@example.com"
 
 $ ssh-keygen -t rsa -C "youremail@example.com"  创建密钥
 
-
+---------------------------------------------------------
 git init  把当前目录变成可管理的     仓库（Working Directory）——》   .git 是 repository（版本库），包含 stage 和branch
 git add  <filename>  把文件添加到   stage(暂存区）
 git commit -m "备注“  把文件从暂存区添加到 branch （分支）
@@ -31,7 +32,12 @@ git checkout -- file可以丢弃工作区的修改：总之，就是让这个文件回到最近一次git co
 
 git rm  <file>    
 git commit          :从版本库中删除该文件，那就用命令git rm删掉，并且git commit
-
+---------------------状态提示----------------------
+Untracked files:       未提交的文件（未add ）
+Changes to be committed:已添加到暂存区，但未提交到分支（所有修改都已add，但未commit）
+Changes not staged for commit:只要有未commit的修改，(有修改未add到本次commit里。未包含最近的修改）
+1.已add的文件又发生变化，但未提交到分支（已add后又修改，但未commit)
+                              ()  
 ---------------------远程库管理----------------------
 
 
