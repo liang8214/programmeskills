@@ -44,6 +44,11 @@ Changes not staged for commit:只要有未commit的修改，(有修改未add到本次commit里。
 从远程库clone
 git clone  git@github.com:michaelliao/gitskills.git
 
+(从远程服务器克隆一个一模一样的版本库到本地,复制的是整个版本库，叫做clone.（clone是将一个库复制到你的本地，是一个本地从无到有的过程
+从远程服务器获取到一个branch分支的更新到本地，并更新本地库，叫做pull.（pull是指同步一个在你本地有版本的库内容更新的部分到你的本地库）
+git pull相当于是从远程获取最新版本并merge（合并）到本地     git pull = git fetch + git merge，git fetch更安全一些
+git clone是远程操作的第一步，通常是从远程主机克隆一个版本库，eg:$ git clone ##   该命令会在本地主机生成一个目录，与远程主机的版本库同名，如果要是制定不同的目录名，可以将目录名作为...http://blog.csdn.net/zhou_xiaomiao/article/details/53185712)
+
 本地已有库与远程库关联：
  git remote add origin git@github.com:michaelliao/learngit.git
 
