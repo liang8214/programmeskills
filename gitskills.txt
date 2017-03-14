@@ -9,6 +9,7 @@ $ git config --global user.name "Your Name"
 $ git config --global user.email "email@example.com"
 
 $ ssh-keygen -t rsa -C "youremail@example.com"  创建密钥
+ssh -vT git@github.com
 
 ---------------------------------------------------------
 git init  把当前目录变成可管理的     仓库（Working Directory）——》   .git 是 repository（版本库），包含 stage 和branch
